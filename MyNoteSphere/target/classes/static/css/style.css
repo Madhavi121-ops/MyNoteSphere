@@ -1,0 +1,534 @@
+@charset "UTF-8";
+/* =======================
+   Global Reset
+======================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* =======================
+   Navbar
+======================= */
+.navbar {
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+}
+
+.brand {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.brand:hover {
+    color: #d3d3d3;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.navbar a {
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* =======================
+   Minimal Notion-like Sidebar
+======================= */
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  background: #141414;
+  border-right: 1px solid #2a2a2a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.sidebar .profile {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.sidebar .dropdown {
+  margin-top: 8px;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.sidebar .dropdown li {
+  margin: 6px 0;
+}
+
+.sidebar .dropdown a {
+  color: #b5b5b5;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.sidebar .dropdown a:hover {
+  color: #ffffff;
+}
+
+.sidebar .menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  flex-grow: 1;
+}
+
+.sidebar .menu li {
+  margin: 10px 0;
+}
+
+.sidebar .menu li a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sidebar .menu li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.logout-container {
+  padding-top: 15px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.logout-btn {
+  background: #2a2a2a;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #444;
+}
+
+/* Offset journal container */
+.journal-container {
+  margin-left: 240px; /* Adjust for sidebar width */
+  padding: 60px 40px;
+}
+
+/* =======================
+   Container / Forms
+======================= */
+.container {
+    max-width: 400px;
+    width: 100%;
+    margin: 120px auto 40px;
+    padding: 30px 25px;
+    background: rgba(35, 35, 35, 0.95);
+    border-radius: 15px;
+    border: 1px solid #404040;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    background: url('/images/icons.png') no-repeat center/contain;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* =======================
+   Headings & Forms
+======================= */
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4a9eff;
+    box-shadow: 0 0 8px #4a9eff;
+}
+
+/* =======================
+   Buttons
+======================= */
+button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #4a9eff, #357abd);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 158, 255, 0.4);
+}
+
+/* =======================
+   Links & Messages
+======================= */
+p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+p a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #ff4c4c;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: #00ff7f;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* =======================
+   Footer
+======================= */
+.footer {
+    background: #111;
+    padding: 3rem 2rem 1rem;
+    border-top: 1px solid #404040;
+    color: #808080;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h4 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.footer-section a {
+    color: #b0b0b0;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #808080;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #404040;
+    color: #808080;
+}
+
+/* =======================
+   Notion Style Editor Page
+======================= */
+body {
+    background: #191919; /* Dark Notion-like background */
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0; /* White space like Notion */
+    line-height: 1.6;
+}
+
+/* Container */
+.editor-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: transparent; /* No card look */
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Title input (H1 style) */
+.title-input {
+    width: 100%;
+    font-size: 2.8rem;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.title-input::placeholder {
+    color: #555;
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+/* Content input (plain text area) */
+.content-input {
+    width: 100%;
+    min-height: 70vh;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #eaeaea;
+    resize: none;
+    padding: 0;
+}
+
+.content-input::placeholder {
+    color: #555;
+    opacity: 0.7;
+}
+
+/* Save/Update Button -> subtle, bottom aligned */
+button {
+    margin-top: 30px;
+    padding: 8px 18px;
+    border: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #444;
+}
+
+
+/* =======================
+   Journal Images
+======================= */
+.logo {
+    height: 50px;        /* 👈 navbar-friendly */
+    width: auto;
+}
+
+
+.logo:hover {
+    transform: scale(1.02);
+}
+
+/* Image Upload Section */
+.form-group label {
+    display: block;
+    margin: 15px 0 8px;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+input[type="file"] {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    padding: 8px;
+    border-radius: 6px;
+    color: #e0e0e0;
+    cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background: linear-gradient(135deg, #4a9eff, #357abd);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: #357abd;
+}
+
+/* =======================
+   Responsive
+======================= */
+@media (max-width: 768px) {
+    .container {
+        margin: 150px 20px 50px;
+        padding: 25px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .editor-container {
+        padding: 25px;
+    }
+
+    .title-input {
+        font-size: 2.2rem;
+    }
+
+    .content-input {
+        font-size: 1rem;
+    }
+    .journal-container {
+        width: 100%;
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #111;
+    color: #fff;
+   
+}
+
+.journal-container {
+    width: calc(100% - 260px); /* full width minus sidebar */
+    margin-left: 260px;
+    padding: 20px 40px;
+}
+
+
+
+.journal-title {
+    font-size: 2.6rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.journal-dates {
+    font-size: 0.95rem;
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+.journal-content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 35px;
+    white-space: pre-wrap; /* preserves new lines from DB */
+}
+
+.journal-links a {
+    color: #8a5cff;
+    text-decoration: none;
+    margin-right: 18px;
+    font-weight: 500;
+}
+
+.journal-links a:hover {
+    text-decoration: underline;
+}
+
