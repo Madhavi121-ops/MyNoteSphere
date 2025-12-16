@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div th:fragment="sidebar">
+    <div class="sidebar">
+        <div class="profile">
+    <!-- Display user name -->
+    <h1><span sec:authentication="name"></span></h1>
+    <!-- Display user email 
+    <p class="user-email" sec:authentication="principal.username"></p>-->
+
+    <!-- Profile dropdown -->
+    <ul class="dropdown">
+        <li><a th:href="@{/add-account}">➕ Add Another Account</a></li>
+        <li><a th:href="@{/profile}">👤 Profile</a></li>
+        <li><a th:href="@{/new-workspace}">🆕 New Workspace</a></li>
+        <li><a th:href="@{/invite}">📨 Invite Members</a></li>
+    </ul>
+	</div>
+
+
+        <ul class="menu">
+            <li><strong><a th:href="@{/dashboard}">🏠 Home</a></strong></li>
+            <li><strong><a th:href="@{/reading}">📚 Reading List</a></strong></li>
+            <li><strong><a th:href="@{/journals/new}">📝 New Page</a></strong></li>
+            <li><strong><a th:href="@{/todos}">✅ To-do’s</a></strong></li>
+            <li><strong><a th:href="@{/journals}">📖 Journals</a></strong></li>
+            <li><strong><a th:href="@{/trash}">🗑️ Trash</a></strong></li>
+        </ul>
+
+        <div class="logout-container">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

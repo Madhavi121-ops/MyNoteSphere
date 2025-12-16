@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyNoteSphere</title>
+
+    <link rel="stylesheet" th:href="@{/css/landing.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <img th:src="@{/images/logo.png}" alt="MyNoteSphere Logo">
+        
+    </div>
+
+    <nav>
+        <a href="#features">Features</a>
+        <a href="/login" class="btn-outline">Login</a>
+        <a href="/register" class="btn-primary">Get Started</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Your private space to think, plan, and grow</h1>
+    <h2>Your Life, Organized in One Sphere.</h2>
+    <br><br>
+    
+    <p><em><strong>
+        Journal your thoughts, manage your tasks, and track your reading —
+        all in one calm, distraction-free sphere.
+    </strong></em></p>
+
+    <div class="hero-buttons">
+        <a href="/register" class="btn-primary">Create Your Sphere</a>
+        <a href="#features" class="btn-outline">Learn More</a>
+    </div>
+</section>
+
+<section id="features" class="features">
+    <div class="feature-card">
+        <h3>📝 Personal Journaling</h3>
+        <p>Capture daily thoughts, reflections, and ideas in a private space.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>✅ Task Management</h3>
+        <p>Plan your day, track progress, and stay focused.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>📚 Reading Lists</h3>
+        <p>Save books and articles and track what you read.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>🌙 Dark Mode</h3>
+        <p>A calm, eye-friendly experience for deep thinking.</p>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Build your daily ritual with MyNoteSphere</h2>
+    <a href="/register" class="btn-primary">Start Free</a>
+</section>
+
+<footer class="footer">
+    <p>© 2025 MyNoteSphere • All rights reserved</p>
+</footer>
+
+</body>
+</html>

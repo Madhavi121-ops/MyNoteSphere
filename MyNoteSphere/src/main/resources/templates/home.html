@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard – MyNoteSphere</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+
+    <h1>📚 Journal Flashcards</h1>
+
+    <!-- Add Flashcard Form -->
+    <form th:action="@{/flashcard/add}" method="post"
+          enctype="multipart/form-data"
+          th:object="${flashcard}">
+
+        <input type="text" th:field="*{title}"
+               placeholder="Journal Title" required>
+
+        <input type="file" name="image" accept="image/*">
+
+        <button type="submit">Add Flashcard</button>
+    </form>
+
+    <!-- Flashcards Grid -->
+    <div class="card-container">
+        <div class="card" th:each="card : ${flashcards}">
+            <img th:if="${card.imagePath}" th:src="${card.imagePath}">
+            <h3 th:text="${card.title}"></h3>
+        </div>
+    </div>
+
+</body>
+</html>

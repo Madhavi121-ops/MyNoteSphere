@@ -1,0 +1,149 @@
+/* =======================
+   Reading List Page
+======================= */
+
+body {
+    background: #111;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page Title */
+h1 {
+    text-align: center;
+    margin: 120px 0 30px;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+/* =======================
+   Add Reading Form
+======================= */
+
+form {
+    max-width: 650px;
+    margin: 0 auto 40px;
+    padding: 25px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #4a9eff;
+    box-shadow: 0 0 6px #4a9eff;
+}
+
+form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* Add Button */
+form button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #4a9eff, #357abd);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 158, 255, 0.4);
+}
+
+/* =======================
+   Reading Items List
+======================= */
+
+hr {
+    border: none;
+    border-top: 1px solid #2a2a2a;
+    margin: 40px auto;
+    max-width: 700px;
+}
+
+div[th\\]:each {
+    max-width: 700px;
+    margin: 0 auto 25px;
+    padding: 20px 25px;
+    background: #181818;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.2s ease;
+}
+
+div[th\\]:each:hover {
+    transform: translateY(-2px);
+}
+
+/* Item Title */
+div[th\\]:each h3 {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* Author */
+div[th\\]:each em {
+    color: #aaa;
+    font-style: italic;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Status */
+div[th\\]:each strong {
+    color: #4a9eff;
+}
+
+/* Notes */
+div[th\\]:each p {
+    margin: 6px 0;
+    line-height: 1.6;
+}
+
+/* Empty State */
+p {
+    text-align: center;
+    color: #aaa;
+    font-size: 1rem;
+}
+
+/* =======================
+   Responsive
+======================= */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin-top: 100px;
+    }
+
+    form,
+    div[th\\]:each {
+        margin: 0 15px 25px;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- Include sidebar fragment here -->
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <div class="content">
+        <h1>Welcome, <span sec:authentication="name"></span>!</h1>
+        <p>This is your personal space.</p>
+    </div>
+
+</body>
+</html>
