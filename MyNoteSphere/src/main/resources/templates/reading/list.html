@@ -7,29 +7,39 @@
 
 <body>
 
-<h1>📚 My Reading List</h1>
+<div class="layout">
 
-<!-- Add Reading Item -->
-<form th:action="@{/reading/add}" th:object="${readingItem}" method="post">
-    <input type="text" th:field="*{title}" placeholder="Book / Article Title" required>
-    <input type="text" th:field="*{author}" placeholder="Author / Source">
-    <textarea th:field="*{notes}" placeholder="Why do you want to read this?"></textarea>
-    <button type="submit">Add to Reading List</button>
-</form>
+    <!-- SIDEBAR -->
+    <div th:replace="fragments/sidebar :: sidebar"></div>
 
-<hr>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
 
-<!-- Reading Items -->
-<div th:if="${#lists.isEmpty(items)}">
-    <p>No reading items yet.</p>
-</div>
+        <h1>📚 My Reading List</h1>
 
-<div th:each="item : ${items}">
-    <h3 th:text="${item.title}"></h3>
-    <p><em th:text="${item.author}"></em></p>
-    <p>Status: <strong th:text="${item.status}"></strong></p>
-    <p th:text="${item.notes}"></p>
-    <hr>
+        <!-- Add Reading Item -->
+        <form th:action="@{/reading/add}" th:object="${readingItem}" method="post">
+            <input type="text" th:field="*{title}" placeholder="Book / Article Title" required>
+            <input type="text" th:field="*{author}" placeholder="Author / Source">
+            <textarea th:field="*{notes}" placeholder="Why do you want to read this?"></textarea>
+            <button type="submit">Add to Reading List</button>
+        </form>
+
+        <hr>
+
+        <!-- Reading Items -->
+        <div th:if="${#lists.isEmpty(items)}">
+            <p>No reading items yet.</p>
+        </div>
+
+        <div class="reading-item" th:each="item : ${items}">
+            <h3 th:text="${item.title}"></h3>
+            <p><em th:text="${item.author}"></em></p>
+            <p>Status: <strong th:text="${item.status}"></strong></p>
+            <p th:text="${item.notes}"></p>
+        </div>
+
+    </div>
 </div>
 
 </body>
