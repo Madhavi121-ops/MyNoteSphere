@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MyNoteSphere | To-Do</title>
+    <link rel="stylesheet" th:href="@{/css/todo.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <!-- Main content -->
+    <div class="main-content">
+
+        <h2>My To-Do List</h2>
+
+        <div class="todo-form">
+            <input type="text" id="taskInput" placeholder="Enter a task">
+            <button onclick="addTodo()">Add</button>
+        </div>
+
+        <ul id="todoList"></ul>
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/todo.js}"></script>
+</body>
+</html>

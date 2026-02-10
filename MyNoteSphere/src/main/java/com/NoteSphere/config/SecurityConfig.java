@@ -34,6 +34,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+            .csrf(csrf -> csrf.disable())   // 🔑 THIS FIXES 403
             .authenticationProvider(authenticationProvider())
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(
@@ -59,4 +60,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

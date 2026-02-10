@@ -46,7 +46,10 @@ public class AuthController {
 		model.addAttribute("registerRequest", new RegisterRequest());
 		return "register";
 	}
-	
+	@GetMapping("/todos")
+    public String todosPage() {
+        return "todo"; // maps to todo.html
+    }
 	@PostMapping("/register")
 	public String registerUser(
 	        @ModelAttribute("registerRequest") RegisterRequest request,
@@ -61,6 +64,7 @@ public class AuthController {
 	        );
 	        return "register";
 	    }
+	    
 
 	    // ✅ Proper username existence check
 	    try {

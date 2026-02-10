@@ -1,0 +1,167 @@
+/* =======================
+   To-Do Page (Reading List Theme)
+======================= */
+
+body {
+    background: #FFFFFF;
+    color: #1e1111;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main content respects sidebar */
+.main-content {
+    margin-left: 300px;
+    padding: 40px 20px;
+}
+
+/* Page Title */
+h2 {
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* =======================
+   Add Todo Card
+======================= */
+
+.todo-form {
+    max-width: 650px;
+    margin: 0 auto 35px;
+    padding: 25px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    display: flex;
+    gap: 12px;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #D1D5DB;
+    background: #FFFFFF;
+    color: #1F2937;
+    font-size: 1rem;
+}
+
+#taskInput:focus {
+    outline: none;
+    border-color: #6D5BD0;
+    box-shadow: 0 0 0 3px rgba(109, 91, 208, 0.25);
+}
+
+.todo-form button {
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: none;
+    background: #6D5BD0;
+    color: #FFFFFF;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.todo-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(109, 91, 208, 0.4);
+}
+
+/* =======================
+   Todo List
+======================= */
+
+#todoList {
+    list-style: none;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Todo Card */
+#todoList li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #FFFFFF;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#todoList li:hover {
+    transform: translateY(-2px);
+    background: #F3F4FF; /* subtle lavender hover */
+}
+
+/* Checkbox */
+#todoList input[type="checkbox"] {
+    transform: scale(1.25);
+    cursor: pointer;
+}
+
+/* Task text */
+#todoList span {
+    flex: 1;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+/* Completed task */
+#todoList span.completed {
+    text-decoration: line-through;
+    color: #9CA3AF;
+}
+
+/* Delete button */
+#todoList li button {
+    background: #2a2a2a;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#todoList li button:hover {
+    background: #ef4444;
+}
+
+/* =======================
+   Empty State
+======================= */
+
+.empty-text {
+    text-align: center;
+    color: #aaa;
+    font-size: 1rem;
+    margin-top: 40px;
+}
+
+/* =======================
+   Responsive
+======================= */
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    h2 {
+        margin-top: 100px;
+        font-size: 2rem;
+    }
+
+    .todo-form {
+        flex-direction: column;
+    }
+}
+

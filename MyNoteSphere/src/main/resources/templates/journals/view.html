@@ -4,37 +4,43 @@
     <meta charset="UTF-8">
     <title th:text="${journal.title}">Journal</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
 </head>
 <body>
-	<div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
+<div class="app-layout">
 
-    <div class="journal-container">
-        <!-- Your journal content here -->
+    <!-- Sidebar -->
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <!-- Main content -->
+    <div class="main-content">
+
+        <div class="journal-container">
+
+            <!-- Title -->
+            <h1 class="journal-title" th:text="${journal.title}">Unplanned</h1>
+
+            <!-- Dates -->
+            <div class="journal-dates">
+                <p>Created: <span th:text="${journal.createdAt}"></span></p>
+                <p>Last Updated: <span th:text="${journal.updatedAt}"></span></p>
+            </div>
+
+            <!-- Content -->
+            <div class="journal-content" th:text="${journal.content}"></div>
+
+            <!-- Links -->
+            <div class="journal-links">
+                <a th:href="@{/journals/edit/{id}(id=${journal.id})}">Edit Journal</a>
+                <a th:href="@{/journals}">Back to All Journals</a>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="journal-container">
-
-        <!-- Title -->
-        <h1 class="journal-title" th:text="${journal.title}">Unplanned</h1>
-
-        <!-- Dates -->
-        <div class="journal-dates">
-            <p>Created: <span th:text="${journal.createdAt}"></span></p>
-            <p>Last Updated: <span th:text="${journal.updatedAt}"></span></p>
-        </div>
-
-        <!-- Content -->
-        <div class="journal-content" th:text="${journal.content}">
-            This is where the journal content goes.
-        </div>
-
-        <!-- Links -->
-        <div class="journal-links">
-            <a th:href="@{/journals/edit/{id}(id=${journal.id})}">Edit Journal</a>
-            <a th:href="@{/journals}">Back to All Journals</a>
-        </div>
-    </div>
+</div>
 
 </body>
 </html>

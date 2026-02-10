@@ -7,20 +7,27 @@
     padding: 0;
     box-sizing: border-box;
 }
+.app-layout {
+    display: flex;
+}
 
+.main-content {
+    margin-left: 300px;
+    width: calc(100% - 300px);
+    padding: 40px;
+}
 body {
+    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
-    color: #ffffff;
-    line-height: 1.6;
-    min-height: 100vh;
+    background: #FFFFFF; /* full white background */
+    color: #000000;      /* black text */
 }
 
 /* =======================
    Navbar
 ======================= */
 .navbar {
-    background: rgba(30, 30, 30, 0.95);
+    background: #6D5BD0; /* primary */
     backdrop-filter: blur(8px);
     padding: 1rem 2rem;
     display: flex;
@@ -31,7 +38,7 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #4C3BA8;
 }
 
 .brand {
@@ -53,7 +60,7 @@ body {
 }
 
 .navbar a {
-    color: #e0e0e0;
+    color: #E5E7EB;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -61,106 +68,8 @@ body {
 }
 
 .navbar a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-}
-
-/* =======================
-   Minimal Notion-like Sidebar
-======================= */
-.sidebar {
-  width: 300px;
-  height: 100vh;
-  background: #141414;
-  border-right: 1px solid #2a2a2a;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 25px 20px;
-  display: flex;
-  flex-direction: column;
-  z-index: 999;
-  transition: all 0.3s ease;
-}
-
-.sidebar .profile {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 30px;
-  color: #ffffff;
-}
-
-.sidebar .dropdown {
-  margin-top: 8px;
-  list-style: none;
-  font-size: 0.9rem;
-}
-
-.sidebar .dropdown li {
-  margin: 6px 0;
-}
-
-.sidebar .dropdown a {
-  color: #b5b5b5;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.sidebar .dropdown a:hover {
-  color: #ffffff;
-}
-
-.sidebar .menu {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  flex-grow: 1;
-}
-
-.sidebar .menu li {
-  margin: 10px 0;
-}
-
-.sidebar .menu li a {
-  display: block;
-  padding: 10px 14px;
-  border-radius: 8px;
-  color: #e0e0e0;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.sidebar .menu li a:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-}
-
-.logout-container {
-  padding-top: 15px;
-  border-top: 1px solid #2a2a2a;
-}
-
-.logout-btn {
-  background: #2a2a2a;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.logout-btn:hover {
-  background: #444;
-}
-
-/* Offset journal container */
-.journal-container {
-  margin-left: 240px; /* Adjust for sidebar width */
-  padding: 60px 40px;
+    background: rgba(167, 139, 250, 0.25); /* lavender tint */
+    color: #FFFFFF;
 }
 
 /* =======================
@@ -171,13 +80,147 @@ body {
     width: 100%;
     margin: 120px auto 40px;
     padding: 30px 25px;
-    background: rgba(35, 35, 35, 0.95);
+    background: #FFFFFF;
     border-radius: 15px;
-    border: 1px solid #404040;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    border: 1px solid #CBD5E1; /* slightly stronger border for visibility */
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
+}
+
+.container.journals-page {
+    max-width: 1000px;      /* wider journals page container */
+    margin: 20px auto;      /* remove large auth-page top spacing */
+}
+
+.container.journals-page p {
+    color: #000000;         /* ensure black text below Create button */
+}
+
+.container.journals-page p a:not(.btn) {
+    color: #6D5BD0;         /* keep normal links purple */
+}
+
+.journal-entry {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;      /* stronger border so card is visible */
+    border-radius: 14px;
+    padding: 22px 24px;             /* bigger “box” */
+    margin-top: 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.journal-entry h3 {
+    margin-bottom: 10px;
+}
+
+.journal-entry h3 a {
+    color: #000000;                 /* journal title in black */
+    text-decoration: none;
+}
+
+.journal-entry h3 a:hover {
+    text-decoration: underline;
+}
+
+.journal-entry p {
+    text-align: left;               /* override global centering */
+    margin-top: 8px;
+    color: #000000;
+}
+
+/* Journals: meta + actions */
+.journal-meta {
+    margin-top: 10px;
+    padding: 12px 14px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 0;
+}
+
+.meta-row + .meta-row {
+    border-top: 1px dashed #E2E8F0;
+}
+
+.meta-label {
+    font-size: 0.9rem;
+    color: #475569;
+    font-weight: 600;
+}
+
+.meta-value {
+    font-size: 0.95rem;
+    color: #0F172A;
+}
+
+.journal-actions {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Button system (so Edit & Delete match) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    line-height: 1;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #FFFFFF;
+    color: #111827;
+    border-color: #CBD5E1;
+}
+
+.btn-secondary:hover {
+    background: #F1F5F9;
+    border-color: #94A3B8;
+}
+
+.btn-danger {
+    background: #FFFFFF;
+    color: #B91C1C;
+    border-color: #FCA5A5;
+}
+
+.btn-danger:hover {
+    background: #FEE2E2;
+    border-color: #F87171;
+}
+
+/* Keep old bootstrap-like class in markup */
+.btn-primary {
+    background: #6D5BD0;
+    color: #FFFFFF;
+    border-color: #6D5BD0;
+}
+
+.btn-primary:hover {
+    background: #5B4BC5;
+    border-color: #5B4BC5;
 }
 
 .container::before {
@@ -198,7 +241,7 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 25px;
-    color: #ffffff;
+    color: #000000;
     font-size: 3rem;
 }
 
@@ -210,7 +253,7 @@ label {
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
-    color: #ffffff;
+    color: #000000;
 }
 
 input[type="text"],
@@ -218,41 +261,36 @@ input[type="password"],
 input[type="email"] {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #333;
+    border: 1px solid #D1D5DB;
     border-radius: 8px;
-    background-color: #2a2a2a;
-    color: #ffffff;
+    background-color: #FFFFFF;
+    color: #1F2937;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
 
 input:focus {
     outline: none;
-    border-color: #4a9eff;
-    box-shadow: 0 0 8px #4a9eff;
+    border-color: #6D5BD0;
+    box-shadow: 0 0 0 3px rgba(109, 91, 208, 0.25);
 }
 
 /* =======================
    Buttons
 ======================= */
 button {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #4a9eff, #357abd);
-    color: white;
+    padding: 10px 18px;
     border: none;
-    border-radius: 8px;
-    font-size: 1.05rem;
-    font-weight: 600;
+    background: #6D5BD0; /* primary button */
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    display: block;
-    margin-top: 10px;
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(74, 158, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(109, 91, 208, 0.4);
 }
 
 /* =======================
@@ -264,7 +302,7 @@ p {
 }
 
 p a {
-    color: #ffffff;
+    color: #6D5BD0;
     text-decoration: none;
     font-weight: 500;
 }
@@ -289,10 +327,10 @@ p a:hover {
    Footer
 ======================= */
 .footer {
-    background: #111;
+    background: #F3F4F6;
     padding: 3rem 2rem 1rem;
-    border-top: 1px solid #404040;
-    color: #808080;
+    border-top: 1px solid #E5E7EB;
+    color: #6B7280;
 }
 
 .footer-content {
@@ -304,12 +342,12 @@ p a:hover {
 }
 
 .footer-section h4 {
-    color: #ffffff;
+    color: #1F2937;
     margin-bottom: 1rem;
 }
 
 .footer-section a {
-    color: #b0b0b0;
+    color: #6B7280;
     text-decoration: none;
     display: block;
     margin-bottom: 0.5rem;
@@ -324,21 +362,13 @@ p a:hover {
     text-align: center;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid #404040;
-    color: #808080;
+    border-top: 1px solid #E5E7EB;
+    color: #9CA3AF;
 }
 
 /* =======================
    Notion Style Editor Page
 ======================= */
-body {
-    background: #191919; /* Dark Notion-like background */
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0; /* White space like Notion */
-    line-height: 1.6;
-}
 
 /* Container */
 .editor-container {
@@ -357,7 +387,7 @@ body {
     border: none;
     outline: none;
     background: transparent;
-    color: #fff;
+    color: #000000;
     margin-bottom: 20px;
 }
 
@@ -376,7 +406,7 @@ body {
     border: none;
     outline: none;
     background: transparent;
-    color: #eaeaea;
+    color: #000000;
     resize: none;
     padding: 0;
 }
@@ -386,22 +416,7 @@ body {
     opacity: 0.7;
 }
 
-/* Save/Update Button -> subtle, bottom aligned */
-button {
-    margin-top: 30px;
-    padding: 8px 18px;
-    border: none;
-    background: #2f2f2f;
-    color: #fff;
-    font-size: 0.95rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
 
-button:hover {
-    background: #444;
-}
 
 
 /* =======================
@@ -486,18 +501,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
         padding: 20px;
     }
 }
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #111;
-    color: #fff;
-   
-}
 
 .journal-container {
-    width: calc(100% - 260px); /* full width minus sidebar */
-    margin-left: 260px;
-    padding: 20px 40px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 
@@ -530,5 +537,15 @@ body {
 
 .journal-links a:hover {
     text-decoration: underline;
+}
+
+/* Centered save button on journal editor */
+.journal-save-wrapper {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.journal-save-wrapper .btn-save {
+    padding: 10px 24px;
 }
 
