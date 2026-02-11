@@ -9,7 +9,11 @@ import com.NoteSphere.model.User;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-    List<Todo> findByUser(User user);
+    List<Todo> findByUser(User user); // Deprecated use
+
+    List<Todo> findByUserAndDeletedFalse(User user);
+
+    List<Todo> findByUserAndDeletedTrue(User user);
 
     Optional<Todo> findByIdAndUser(Long id, User user);
 }

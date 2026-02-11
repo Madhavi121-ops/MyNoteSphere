@@ -11,5 +11,4 @@ public class MyNoteSphere {
 	public static void main(String[] args) {
 		SpringApplication.run(MyNoteSphere.class, args);
 	}
-
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>MyNoteSphere</title>
@@ -10,65 +11,115 @@
 
 <body>
 
-<header class="navbar">
-    <div class="logo">
-        <img th:src="@{/images/logo.png}" alt="MyNoteSphere Logo">
-        
-    </div>
+    <header class="navbar">
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="MyNoteSphere Logo">
 
-    <nav>
-        <a href="#features">Features</a>
-        <a href="/login" class="btn-outline">Login</a>
-        <a href="/register" class="btn-primary">Get Started</a>
-    </nav>
-</header>
+        </div>
 
-<section class="hero">
-    <h1>Your private space to think, plan, and grow</h1>
-    <h2>Your Life, Organized in One Sphere.</h2>
-    <br><br>
-    
-    <p><em><strong>
-        Journal your thoughts, manage your tasks, and track your reading —
-        all in one calm, distraction-free sphere.
-    </strong></em></p>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="/login" class="btn-outline">Login</a>
+            <a href="/register" class="btn-primary">Get Started</a>
+        </nav>
+    </header>
 
-    <div class="hero-buttons">
-        <a href="/register" class="btn-primary">Create Your Sphere</a>
-        <a href="#features" class="btn-outline">Learn More</a>
-    </div>
-</section>
+    <section class="hero">
+        <h1>Your private space to think, plan, and grow</h1>
+        <h2>Your Life, Organized in One Sphere.</h2>
+        <br><br>
 
-<section id="features" class="features">
-    <div class="feature-card">
-        <h3>📝 Personal Journaling</h3>
-        <p>Capture daily thoughts, reflections, and ideas in a private space.</p>
-    </div>
+        <p><em><strong>
+                    Journal your thoughts, manage your tasks, and track your reading —
+                    all in one calm, distraction-free sphere.
+                </strong></em></p>
 
-    <div class="feature-card">
-        <h3>✅ Task Management</h3>
-        <p>Plan your day, track progress, and stay focused.</p>
-    </div>
+        <div class="hero-buttons">
+            <a href="/register" class="btn-primary">Create Your Sphere</a>
+            <a href="#features" class="btn-outline">Learn More</a>
+        </div>
+    </section>
 
-    <div class="feature-card">
-        <h3>📚 Reading Lists</h3>
-        <p>Save books and articles and track what you read.</p>
-    </div>
+    <section id="features" class="features-section">
+        <h2>Explore Features</h2>
+        <div class="features-grid">
+            <div class="feature-card card-journal">
+                <h3>📝 Personal Journaling</h3>
+                <p>Capture daily thoughts, reflections, and ideas in a private space.</p>
+            </div>
 
-    <div class="feature-card">
-        <h3>🌙 Dark Mode</h3>
-        <p>A calm, eye-friendly experience for deep thinking.</p>
-    </div>
-</section>
+            <div class="feature-card card-tasks">
+                <h3>✅ Task Management</h3>
+                <p>Plan your day, track progress, and stay focused.</p>
+            </div>
 
-<section class="cta">
-    <h2>Build your daily ritual with MyNoteSphere</h2>
-    <a href="/register" class="btn-primary">Start Free</a>
-</section>
+            <div class="feature-card card-reading">
+                <h3>📚 Reading Lists</h3>
+                <p>Save books and articles and track what you read.</p>
+            </div>
 
-<footer class="footer">
-    <p>© 2025 MyNoteSphere • All rights reserved</p>
-</footer>
+            <div class="feature-card card-darkmode">
+                <h3>🌙 Dark Mode</h3>
+                <p>A calm, eye-friendly experience for deep thinking.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <h2>How MyNoteSphere Works</h2>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">👤</div>
+                <h3>1. Sign Up</h3>
+                <p>Create your secure account to unlock your private sphere.</p>
+            </div>
+            <div class="step-arrow">➜</div>
+            <div class="step-card">
+                <div class="step-icon">🛠️</div>
+                <h3>2. Create Sphere</h3>
+                <p>Choose your tools: Journals, Tasks, and Reading Lists.</p>
+            </div>
+            <div class="step-arrow">➜</div>
+            <div class="step-card">
+                <div class="step-icon">📈</div>
+                <h3>3. Build Habit</h3>
+                <p>Track your progress and organize your life daily.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Build your daily ritual with MyNoteSphere</h2>
+        <a href="/register" class="btn-primary">Start Free</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="logo">
+                    <img th:src="@{/images/logo.png}" alt="MyNoteSphere Logo">
+                </div>
+                <p>Your private space to think, plan, and grow.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Product</h4>
+                <a href="/#features">Features</a>
+                <a href="/#how-it-works">How it Works</a>
+                <a href="/feedback">Feedback</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="/about">About Us</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 MyNoteSphere • All rights reserved</p>
+        </div>
+    </footer>
 
 </body>
+
 </html>

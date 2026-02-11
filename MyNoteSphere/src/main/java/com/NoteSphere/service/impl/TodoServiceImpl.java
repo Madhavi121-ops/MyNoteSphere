@@ -32,7 +32,6 @@ public class TodoServiceImpl implements TodoService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-
     @Override
     public Todo createTodo(String title) {
         if (title == null || title.trim().isEmpty()) {
@@ -52,7 +51,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public List<Todo> getUserTodos() {
         User user = getCurrentUser();
-        return todoRepository.findByUser(user);
+        return todoRepository.findByUserAndDeletedFalse(user);
     }
 
     @Override
@@ -73,6 +72,30 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = todoRepository.findByIdAndUser(todoId, user)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
 
-        todoRepository.delete(todo);
+        todo.setDeleted(true);
+        todoRepository.save(todo);
+    }
+
+    @Override
+    public List<Todo> getTrashedTodos() {
+        User user = getCurrentUser();
+        return todoRepository.findByUserAndDeletedTrue(user);
+    }
+
+    @Override
+    public void restoreTodo(Long todoId) {
+        User user = getCurrentUser();
+        todoRepository.findByIdAndUser(todoId, user)
+                .ifPresent(todo -> {
+                    todo.setDeleted(false);
+                    todoRepository.save(todo);
+                });
+    }
+
+    @Override
+    public void permanentDeleteTodo(Long todoId) {
+        User user = getCurrentUser();
+        todoRepository.findByIdAndUser(todoId, user)
+                .ifPresent(todo -> todoRepository.delete(todo));
     }
 }

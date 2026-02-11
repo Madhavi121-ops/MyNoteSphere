@@ -31,100 +31,98 @@ public class Journal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false, length = 255)
 	private String title;
-	
+
 	@Column(nullable = false, columnDefinition = "TEXT")
-	
+
 	private String content;
 	private String moodEmoji;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	
+
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	
+
 	@CreatedDate
 	@Column(nullable = false, updatable = false)
 	private LocalDateTime createdAt;
-	
+
 	@LastModifiedDate
 	@Column(nullable = false)
 	private LocalDateTime updatedAt;
-	
+
 	@PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-	
-	@PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
-	
-  
-	public Journal() {
-	
+	protected void onCreate() {
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
 	}
-	
+
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = LocalDateTime.now();
+	}
+
+	public Journal() {
+
+	}
+
 	public Journal(String title, String content, User user) {
 		this.title = title;
 		this.content = content;
 		this.user = user;
-		this.createdAt = LocalDateTime.now(); 
-	    this.updatedAt = LocalDateTime.now();
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getContent() {
 		return content;
 	}
-	
+
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
-	
+
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
-	
+
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
-	
-	 public String getMoodEmoji() { 
-		 return moodEmoji; 
-	 }
-	    
-	 public void setMoodEmoji(String moodEmoji) { 
-		 this.moodEmoji = moodEmoji; 
-	 }
-	 
+
+	public String getMoodEmoji() {
+		return moodEmoji;
+	}
+
+	public void setMoodEmoji(String moodEmoji) {
+		this.moodEmoji = moodEmoji;
+	}
 
 	public Object getEntryDate() {
 		// TODO Auto-generated method stub
@@ -136,4 +134,14 @@ public class Journal {
 		return null;
 	}
 
+	@Column(columnDefinition = "boolean default false")
+	private boolean deleted = false;
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 }

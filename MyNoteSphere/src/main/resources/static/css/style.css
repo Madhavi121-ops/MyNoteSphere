@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /* =======================
    Global Reset
 ======================= */
@@ -7,6 +8,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .app-layout {
     display: flex;
 }
@@ -16,18 +18,111 @@
     width: calc(100% - 300px);
     padding: 40px;
 }
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #FFFFFF; /* full white background */
-    color: #000000;      /* black text */
+    background: #F4F7F5;
+    /* Lightest */
+    color: #08090A;
+    /* Darkest */
+}
+
+/* =======================
+   Auth Page Overrides
+======================= */
+.auth-page {
+    background: linear-gradient(-45deg, #0B032D, #240b36, #0F2027, #0B032D);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #FFFFFF;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.auth-page .logo {
+    filter: brightness(0) invert(1);
+}
+
+.auth-page .navbar {
+    background: rgba(11, 3, 45, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-page .footer {
+    background: rgba(11, 3, 45, 0.3);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Auth Container Glassmorphism */
+.auth-page .container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: #FFFFFF;
+}
+
+.auth-page h1,
+.auth-page h2,
+.auth-page label,
+.auth-page p,
+.auth-page a {
+    color: #FFFFFF !important;
+}
+
+.auth-page .form-group input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.auth-page .form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-page .form-group input:focus {
+    border-color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.auth-page button {
+    background: #FFFFFF;
+    color: #0B032D;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.auth-page button:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* =======================
    Navbar
 ======================= */
 .navbar {
-    background: #6D5BD0; /* primary */
+    background: #08090A;
+    /* Darkest */
     backdrop-filter: blur(8px);
     padding: 1rem 2rem;
     display: flex;
@@ -38,19 +133,20 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    border-bottom: 1px solid #4C3BA8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 8px rgba(8, 9, 10, 0.3);
 }
 
 .brand {
     font-size: 1.6rem;
     font-weight: bold;
-    color: #ffffff;
+    color: #F4F7F5;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .brand:hover {
-    color: #d3d3d3;
+    opacity: 0.9;
 }
 
 .navbar ul {
@@ -60,7 +156,8 @@ body {
 }
 
 .navbar a {
-    color: #E5E7EB;
+    color: #A7A2A9;
+    /* Medium Gray */
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -68,8 +165,9 @@ body {
 }
 
 .navbar a:hover {
-    background: rgba(167, 139, 250, 0.25); /* lavender tint */
-    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.15);
+    color: #F4F7F5;
+    opacity: 0.9;
 }
 
 /* =======================
@@ -82,34 +180,40 @@ body {
     padding: 30px 25px;
     background: #FFFFFF;
     border-radius: 15px;
-    border: 1px solid #CBD5E1; /* slightly stronger border for visibility */
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+    border: 1px solid #A7A2A9;
+    /* Medium Gray */
+    box-shadow: 0 10px 25px rgba(8, 9, 10, 0.1);
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
 }
 
 .container.journals-page {
-    max-width: 1000px;      /* wider journals page container */
-    margin: 20px auto;      /* remove large auth-page top spacing */
+    max-width: 1000px;
+    /* wider journals page container */
+    margin: 20px auto;
+    /* remove large auth-page top spacing */
 }
 
 .container.journals-page p {
-    color: #000000;         /* ensure black text below Create button */
+    color: #08090A;
+    /* ensure black text below Create button */
 }
 
 .container.journals-page p a:not(.btn) {
-    color: #6D5BD0;         /* keep normal links purple */
+    color: #222823;
 }
 
 .journal-entry {
     width: 100%;
     background: #FFFFFF;
-    border: 1px solid #CBD5E1;      /* stronger border so card is visible */
+    border: 1px solid #A7A2A9;
+    /* stronger border so card is visible */
     border-radius: 14px;
-    padding: 22px 24px;             /* bigger “box” */
+    padding: 22px 24px;
+    /* bigger “box” */
     margin-top: 16px;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 1px 2px rgba(8, 9, 10, 0.06);
 }
 
 .journal-entry h3 {
@@ -117,7 +221,8 @@ body {
 }
 
 .journal-entry h3 a {
-    color: #000000;                 /* journal title in black */
+    color: #08090A;
+    /* journal title in black */
     text-decoration: none;
 }
 
@@ -126,17 +231,19 @@ body {
 }
 
 .journal-entry p {
-    text-align: left;               /* override global centering */
+    text-align: left;
+    /* override global centering */
     margin-top: 8px;
-    color: #000000;
+    color: #575A5E;
+    /* Dark Gray */
 }
 
 /* Journals: meta + actions */
 .journal-meta {
     margin-top: 10px;
     padding: 12px 14px;
-    background: #F8FAFC;
-    border: 1px solid #E2E8F0;
+    background: #F4F7F5;
+    border: 1px solid #A7A2A9;
     border-radius: 12px;
 }
 
@@ -147,19 +254,19 @@ body {
     padding: 6px 0;
 }
 
-.meta-row + .meta-row {
-    border-top: 1px dashed #E2E8F0;
+.meta-row+.meta-row {
+    border-top: 1px dashed #A7A2A9;
 }
 
 .meta-label {
     font-size: 0.9rem;
-    color: #475569;
+    color: #575A5E;
     font-weight: 600;
 }
 
 .meta-value {
     font-size: 0.95rem;
-    color: #0F172A;
+    color: #08090A;
 }
 
 .journal-actions {
@@ -191,13 +298,13 @@ body {
 
 .btn-secondary {
     background: #FFFFFF;
-    color: #111827;
-    border-color: #CBD5E1;
+    color: #08090A;
+    border-color: #A7A2A9;
 }
 
 .btn-secondary:hover {
-    background: #F1F5F9;
-    border-color: #94A3B8;
+    background: #F4F7F5;
+    border-color: #575A5E;
 }
 
 .btn-danger {
@@ -213,14 +320,15 @@ body {
 
 /* Keep old bootstrap-like class in markup */
 .btn-primary {
-    background: #6D5BD0;
+    background: #222823;
+    /* Dark Green/Black */
     color: #FFFFFF;
-    border-color: #6D5BD0;
+    border-color: #222823;
 }
 
 .btn-primary:hover {
-    background: #5B4BC5;
-    border-color: #5B4BC5;
+    background: #08090A;
+    border-color: #08090A;
 }
 
 .container::before {
@@ -241,7 +349,7 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 25px;
-    color: #000000;
+    color: #08090A;
     font-size: 3rem;
 }
 
@@ -253,7 +361,7 @@ label {
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
-    color: #000000;
+    color: #08090A;
 }
 
 input[type="text"],
@@ -261,18 +369,18 @@ input[type="password"],
 input[type="email"] {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #D1D5DB;
+    border: 1px solid #A7A2A9;
     border-radius: 8px;
     background-color: #FFFFFF;
-    color: #1F2937;
+    color: #08090A;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
 
 input:focus {
     outline: none;
-    border-color: #6D5BD0;
-    box-shadow: 0 0 0 3px rgba(109, 91, 208, 0.25);
+    border-color: #222823;
+    box-shadow: 0 0 0 3px rgba(34, 40, 35, 0.25);
 }
 
 /* =======================
@@ -281,7 +389,8 @@ input:focus {
 button {
     padding: 10px 18px;
     border: none;
-    background: #6D5BD0; /* primary button */
+    background: #222823;
+    /* Dark Green/Black */
     color: #FFFFFF;
     font-size: 0.95rem;
     border-radius: 6px;
@@ -290,7 +399,7 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(109, 91, 208, 0.4);
+    box-shadow: 0 8px 20px rgba(8, 9, 10, 0.4);
 }
 
 /* =======================
@@ -302,7 +411,7 @@ p {
 }
 
 p a {
-    color: #6D5BD0;
+    color: #222823;
     text-decoration: none;
     font-weight: 500;
 }
@@ -327,43 +436,106 @@ p a:hover {
    Footer
 ======================= */
 .footer {
-    background: #F3F4F6;
+    background: #08090A;
     padding: 3rem 2rem 1rem;
-    border-top: 1px solid #E5E7EB;
-    color: #6B7280;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 -2px 8px rgba(8, 9, 10, 0.2);
+    text-align: left;
 }
 
-.footer-content {
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    margin: 0 auto 40px;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
-.footer-section h4 {
-    color: #1F2937;
-    margin-bottom: 1rem;
+.footer-left {
+    flex: 1;
+    min-width: 250px;
 }
 
-.footer-section a {
-    color: #6B7280;
+.footer-left .logo img {
+    width: 120px;
+    margin-bottom: 15px;
+}
+
+.footer-left p {
+    margin-top: 10px;
+    opacity: 0.8;
+    max-width: 300px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.footer-column h4 {
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.footer-column a {
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    transition: color 0.3s ease;
+    margin-bottom: 12px;
+    transition: color 0.3s;
 }
 
-.footer-section a:hover {
-    color: #808080;
+.footer-column a:hover {
+    color: #FFFFFF;
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     padding-top: 2rem;
-    border-top: 1px solid #E5E7EB;
-    color: #9CA3AF;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Auth Page Specific Footer Override */
+.auth-page .footer {
+    background: rgba(11, 3, 45, 0.3);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer-left,
+    .footer-column {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-left .logo img {
+        margin: 0 auto 15px;
+    }
+
+    .footer-left p {
+        margin: 0 auto;
+    }
 }
 
 /* =======================
@@ -374,7 +546,8 @@ p a:hover {
 .editor-container {
     max-width: 900px;
     margin: 0 auto;
-    background: transparent; /* No card look */
+    background: transparent;
+    /* No card look */
     box-shadow: none;
     padding: 0;
 }
@@ -387,7 +560,7 @@ p a:hover {
     border: none;
     outline: none;
     background: transparent;
-    color: #000000;
+    color: #08090A;
     margin-bottom: 20px;
 }
 
@@ -406,7 +579,7 @@ p a:hover {
     border: none;
     outline: none;
     background: transparent;
-    color: #000000;
+    color: #08090A;
     resize: none;
     padding: 0;
 }
@@ -423,7 +596,8 @@ p a:hover {
    Journal Images
 ======================= */
 .logo {
-    height: 50px;        /* 👈 navbar-friendly */
+    height: 50px;
+    /* 👈 navbar-friendly */
     width: auto;
 }
 
@@ -437,12 +611,39 @@ p a:hover {
     display: block;
     margin: 15px 0 8px;
     font-weight: bold;
-    color: #e0e0e0;
+    color: #08090A;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #222823;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #08090A;
+}
+
+.btn-outline {
+    border: 1px solid #222823;
+    color: #222823;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 input[type="file"] {
-    background: #2a2a2a;
-    border: 1px solid #444;
+    background: #222823;
+    border: 1px solid #08090A;
     padding: 8px;
     border-radius: 6px;
     color: #e0e0e0;
@@ -450,7 +651,7 @@ input[type="file"] {
 }
 
 input[type="file"]::-webkit-file-upload-button {
-    background: linear-gradient(135deg, #4a9eff, #357abd);
+    background: linear-gradient(135deg, #222823, #08090A);
     border: none;
     padding: 8px 12px;
     border-radius: 6px;
@@ -461,7 +662,7 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 input[type="file"]::-webkit-file-upload-button:hover {
-    background: #357abd;
+    background: #08090A;
 }
 
 /* =======================
@@ -495,6 +696,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     .content-input {
         font-size: 1rem;
     }
+
     .journal-container {
         width: 100%;
         margin-left: 0;
@@ -525,11 +727,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
     font-size: 1.15rem;
     line-height: 1.8;
     margin-bottom: 35px;
-    white-space: pre-wrap; /* preserves new lines from DB */
+    white-space: pre-wrap;
+    /* preserves new lines from DB */
 }
 
 .journal-links a {
-    color: #8a5cff;
+    color: #222823;
     text-decoration: none;
     margin-right: 18px;
     font-weight: 500;
@@ -548,4 +751,3 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .journal-save-wrapper .btn-save {
     padding: 10px 24px;
 }
-

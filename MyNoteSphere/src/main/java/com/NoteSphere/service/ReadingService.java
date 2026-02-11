@@ -18,10 +18,32 @@ public class ReadingService {
     }
 
     public List<ReadingItem> getReadingList(User user) {
-        return repository.findByUser(user);
+        return repository.findByUserAndDeletedFalse(user);
+    }
+
+    public List<ReadingItem> getTrashList(User user) {
+        return repository.findByUserAndDeletedTrue(user);
     }
 
     public void save(ReadingItem item) {
         repository.save(item);
+    }
+
+    public void deleteById(Long id) {
+        repository.findById(id).ifPresent(item -> {
+            item.setDeleted(true);
+            repository.save(item);
+        });
+    }
+
+    public void restoreById(Long id) {
+        repository.findById(id).ifPresent(item -> {
+            item.setDeleted(false);
+            repository.save(item);
+        });
+    }
+
+    public void permanentDelete(Long id) {
+        repository.deleteById(id);
     }
 }

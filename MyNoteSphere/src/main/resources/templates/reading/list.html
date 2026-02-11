@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Reading List - MyNoteSphere</title>
     <link rel="stylesheet" th:href="@{/css/reading.css}">
@@ -8,40 +9,70 @@
 
 <body>
 
-<div class="app-layout">
+    <div class="app-layout">
 
-    <!-- SIDEBAR -->
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <!-- SIDEBAR -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
 
-        <h1>📚 My Reading List</h1>
+            <header class="page-header"
+                style="position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; min-height: 50px;">
+                <button id="sidebarToggle" class="open-btn" style="position: absolute; left: 0;">☰</button>
+                <h2
+                    style="color: #0B032D; margin: 0; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    📚 My Reading List
+                </h2>
+                <div class="date-display" style="color: #666; font-weight: 500; position: absolute; right: 0;">
+                    <span th:text="${#temporals.format(#temporals.createNow(), 'EEEE, MMMM d')}">Today</span>
+                </div>
+            </header>
 
-        <!-- Add Reading Item -->
-        <form th:action="@{/reading/add}" th:object="${readingItem}" method="post">
-            <input type="text" th:field="*{title}" placeholder="Book / Article Title" required>
-            <input type="text" th:field="*{author}" placeholder="Author / Source">
-            <textarea th:field="*{notes}" placeholder="Why do you want to read this?"></textarea>
-            <button type="submit">Add to Reading List</button>
-        </form>
+            <!-- Add Reading Item -->
+            <form th:action="@{/reading/add}" th:object="${readingItem}" method="post" class="reading-form">
+                <input type="text" th:field="*{title}" placeholder="Book / Article Title" required>
+                <input type="text" th:field="*{author}" placeholder="Author / Source">
 
-        <hr>
+                <select th:field="*{status}"
+                    style="width: 100%; padding: 12px 14px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #D1D5DB; background: #FFFFFF; font-size: 1rem;">
+                    <option value="TO_READ">To Read</option>
+                    <option value="READING">Reading</option>
+                    <option value="COMPLETED">Completed</option>
+                </select>
 
-        <!-- Reading Items -->
-        <div th:if="${#lists.isEmpty(items)}">
-            <p>No reading items yet.</p>
+                <textarea th:field="*{notes}" placeholder="Why do you want to read this?"></textarea>
+                <button type="submit">Add to Reading List</button>
+            </form>
+
+            <hr>
+
+            <!-- Reading Items -->
+            <div th:if="${#lists.isEmpty(items)}">
+                <p>No reading items yet.</p>
+            </div>
+
+            <div class="reading-item" th:each="item : ${items}">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h3 th:text="${item.title}"></h3>
+                        <p><em th:text="${item.author}"></em></p>
+                    </div>
+                    <form th:action="@{/reading/delete/{id}(id=${item.id})}" method="post"
+                        style="margin: 0; padding: 0; background: none; border: none; width: auto;">
+                        <button type="submit" class="delete-btn"
+                            onclick="return confirm('Remove this book?')">🗑️</button>
+                    </form>
+                </div>
+                <p>Status: <strong th:text="${item.status}"></strong></p>
+                <p th:text="${item.notes}"></p>
+            </div>
+
         </div>
-
-        <div class="reading-item" th:each="item : ${items}">
-            <h3 th:text="${item.title}"></h3>
-            <p><em th:text="${item.author}"></em></p>
-            <p>Status: <strong th:text="${item.status}"></strong></p>
-            <p th:text="${item.notes}"></p>
-        </div>
-
     </div>
-</div>
+    </div>
 
+    <script th:src="@{/js/sidebar.js}"></script>
 </body>
+
 </html>

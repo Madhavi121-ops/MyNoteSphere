@@ -1,54 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>My Journals</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/sidebar.css}">
 </head>
+
 <body>
-<div class="app-layout">
-    <!-- Sidebar -->
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="container journals-page">
-            <h1>Journals</h1>
+        <!-- Main content -->
+        <div class="main-content">
+            <header class="page-header"
+                style="position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; min-height: 50px;">
+                <button id="sidebarToggle" class="open-btn" style="position: absolute; left: 0;">☰</button>
+                <h1 style="margin: 0; text-align: center;">Journals</h1>
+            </header>
 
-            <!-- Flash messages -->
-            <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
-            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div class="container journals-page">
 
-            <p><a th:href="@{/journals/new}" class="btn btn-primary">Create New Journal</a></p>
+                <!-- Flash messages -->
+                <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-            <div th:if="${journals.isEmpty()}">
-                <p>You don't have any journal entries yet. Why not create one?</p>
-            </div>
-            <div th:unless="${journals.isEmpty()}">
-                <div th:each="journal : ${journals}" class="journal-entry">
-                    <h3><a th:href="@{/journals/{id}(id=${journal.id})}" th:text="${journal.title}">Journal Title</a></h3>
-                    <div class="journal-meta">
-                        <div class="meta-row">
-                            <span class="meta-label">Created</span>
-                            <span class="meta-value" th:text="${#temporals.format(journal.createdAt, 'MMM d, yyyy • HH:mm')}"></span>
+                <p><a th:href="@{/journals/new}" class="btn btn-primary">Create New Journal</a></p>
+
+                <div th:if="${journals.isEmpty()}">
+                    <p>You don't have any journal entries yet. Why not create one?</p>
+                </div>
+                <div th:unless="${journals.isEmpty()}">
+                    <div th:each="journal : ${journals}" class="journal-entry">
+                        <h3><a th:href="@{/journals/{id}(id=${journal.id})}" th:text="${journal.title}">Journal
+                                Title</a></h3>
+                        <div class="journal-meta">
+                            <div class="meta-row">
+                                <span class="meta-label">Created</span>
+                                <span class="meta-value"
+                                    th:text="${#temporals.format(journal.createdAt, 'MMM d, yyyy • HH:mm')}"></span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Updated</span>
+                                <span class="meta-value"
+                                    th:text="${#temporals.format(journal.updatedAt, 'MMM d, yyyy • HH:mm')}"></span>
+                            </div>
                         </div>
-                        <div class="meta-row">
-                            <span class="meta-label">Updated</span>
-                            <span class="meta-value" th:text="${#temporals.format(journal.updatedAt, 'MMM d, yyyy • HH:mm')}"></span>
-                        </div>
-                    </div>
 
-                    <div class="journal-actions">
-                        <a th:href="@{/journals/edit/{id}(id=${journal.id})}" class="btn btn-secondary">Edit</a>
-                    <form th:action="@{/journals/delete/{id}(id=${journal.id})}" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this journal entry?')">Delete</button>
-                    </form>
+                        <div class="journal-actions">
+                            <a th:href="@{/journals/edit/{id}(id=${journal.id})}" class="btn btn-secondary">Edit</a>
+                            <form th:action="@{/journals/delete/{id}(id=${journal.id})}" method="post"
+                                style="display:inline;">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this journal entry?')">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
+    <script th:src="@{/js/sidebar.js}"></script>
 </body>
+
 </html>

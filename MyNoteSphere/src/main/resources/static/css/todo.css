@@ -3,8 +3,10 @@
 ======================= */
 
 body {
-    background: #FFFFFF;
-    color: #1e1111;
+    background: #F4F7F5;
+    /* Lightest */
+    color: #08090A;
+    /* Darkest */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -20,7 +22,7 @@ h2 {
     margin: 40px 0 20px;
     font-size: 2.3rem;
     font-weight: 700;
-    color: #000000;
+    color: #08090A;
 }
 
 /* =======================
@@ -33,7 +35,8 @@ h2 {
     padding: 25px;
     background: #FFFFFF;
     border-radius: 12px;
-    border: 1px solid #E5E7EB;
+    border: 1px solid #A7A2A9;
+    /* Medium Gray */
     display: flex;
     gap: 12px;
 }
@@ -42,23 +45,24 @@ h2 {
     flex: 1;
     padding: 12px 14px;
     border-radius: 8px;
-    border: 1px solid #D1D5DB;
+    border: 1px solid #A7A2A9;
     background: #FFFFFF;
-    color: #1F2937;
+    color: #08090A;
     font-size: 1rem;
 }
 
 #taskInput:focus {
     outline: none;
-    border-color: #6D5BD0;
-    box-shadow: 0 0 0 3px rgba(109, 91, 208, 0.25);
+    border-color: #222823;
+    box-shadow: 0 0 0 3px rgba(34, 40, 35, 0.25);
 }
 
 .todo-form button {
     padding: 12px 18px;
     border-radius: 8px;
     border: none;
-    background: #6D5BD0;
+    background: #222823;
+    /* Dark Green/Black */
     color: #FFFFFF;
     font-weight: 600;
     cursor: pointer;
@@ -67,7 +71,7 @@ h2 {
 
 .todo-form button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(109, 91, 208, 0.4);
+    box-shadow: 0 8px 20px rgba(8, 9, 10, 0.4);
 }
 
 /* =======================
@@ -90,13 +94,13 @@ h2 {
     padding: 18px 22px;
     margin-bottom: 18px;
     border-radius: 12px;
-    border: 1px solid #E5E7EB;
+    border: 1px solid #A7A2A9;
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
 #todoList li:hover {
     transform: translateY(-2px);
-    background: #F3F4FF; /* subtle lavender hover */
+    background: rgba(34, 40, 35, 0.06);
 }
 
 /* Checkbox */
@@ -115,12 +119,13 @@ h2 {
 /* Completed task */
 #todoList span.completed {
     text-decoration: line-through;
-    color: #9CA3AF;
+    color: #575A5E;
+    /* Dark Gray */
 }
 
 /* Delete button */
 #todoList li button {
-    background: #2a2a2a;
+    background: #575A5E;
     border: none;
     color: #fff;
     padding: 8px 12px;
@@ -131,7 +136,7 @@ h2 {
 }
 
 #todoList li button:hover {
-    background: #ef4444;
+    background: #B91C1C;
 }
 
 /* =======================
@@ -140,7 +145,7 @@ h2 {
 
 .empty-text {
     text-align: center;
-    color: #aaa;
+    color: #575A5E;
     font-size: 1rem;
     margin-top: 40px;
 }
@@ -164,4 +169,3 @@ h2 {
         flex-direction: column;
     }
 }
-

@@ -12,4 +12,10 @@ public interface TodoService {
     Todo toggleTodoStatus(Long todoId);
 
     void deleteTodo(Long todoId);
+
+    List<Todo> getTrashedTodos();
+
+    void restoreTodo(Long todoId);
+
+    void permanentDeleteTodo(Long todoId);
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+</head>
+
+<body>
+    <div class="app-layout">
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <div class="main-content">
+            <header class="page-header"
+                style="position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; min-height: 50px;">
+                <button id="sidebarToggle" class="open-btn" style="position: absolute; left: 0;">☰</button>
+                <h1 style="margin: 0; text-align: center;">My Profile</h1>
+            </header>
+
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+
+                <!-- User Info Card -->
+                <div
+                    style="background: linear-gradient(135deg, #08090A 0%, #A7A2A9 100%); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; display: flex; align-items: center; gap: 20px; color: white;">
+                    <div
+                        style="width: 80px; height: 80px; background: #575A5E; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+                        <span th:text="${#strings.substring(user.username,0,1).toUpperCase()}">U</span>
+                    </div>
+                    <div>
+                        <h2 th:text="${user.username}" style="margin: 0 0 5px 0; color: white;">Username</h2>
+                        <p th:text="${user.email}" style="color: #F4F7F5; margin: 0;">user@example.com</p>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div
+                        style="background: linear-gradient(135deg, #08090A 0%, #A7A2A9 100%); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">📝</div>
+                        <h3 th:text="${journalCount}" style="margin: 0; font-size: 2rem; color: white;">0</h3>
+                        <p style="color: #F4F7F5; margin: 5px 0 0;">Journals Created</p>
+                    </div>
+                    <div
+                        style="background: linear-gradient(135deg, #08090A 0%, #A7A2A9 100%); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">📚</div>
+                        <h3 th:text="${readingCount}" style="margin: 0; font-size: 2rem; color: white;">0</h3>
+                        <p style="color: #F4F7F5; margin: 5px 0 0;">Books in List</p>
+                    </div>
+                    <div
+                        style="background: linear-gradient(135deg, #08090A 0%, #A7A2A9 100%); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">✅</div>
+                        <h3 th:text="${todoCount}" style="margin: 0; font-size: 2rem; color: white;">0</h3>
+                        <p style="color: #F4F7F5; margin: 5px 0 0;">Tasks Completed</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/sidebar.js}"></script>
+</body>
+
+</html>

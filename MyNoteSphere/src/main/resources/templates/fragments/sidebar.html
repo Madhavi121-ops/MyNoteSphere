@@ -1,43 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <body>
 
-<div th:fragment="sidebar">
-    <div class="sidebar">
+    <div th:fragment="sidebar">
+        <div id="sidebar" class="sidebar">
 
-        <div class="sidebar-top">
-            <div class="profile">
-                <h2><span sec:authentication="name"></span></h2>
+            <div class="sidebar-top">
+                <div class="profile">
+                    <h2 class="profile-header" onclick="toggleSidebarDropdown()">
+                        <span sec:authentication="name"></span>
+                        <span class="dropdown-arrow">▼</span>
+                    </h2>
 
-                <ul class="dropdown">
-                    <li><a th:href="@{/add-account}">➕ Add Another Account</a></li>
-                    <li><a th:href="@{/profile}">👤 Profile</a></li>
-                    <li><a th:href="@{/new-workspace}">🆕 New Workspace</a></li>
-                    <li><a th:href="@{/invite}">📨 Invite Members</a></li>
+                    <ul id="sidebarDropdown" class="sidebar-dropdown-menu" style="display: none;">
+                        <li><a th:href="@{/account/add}">➕ Add Another Account</a></li>
+                        <li><a th:href="@{/profile}">👤 Profile</a></li>
+                        <li><a th:href="@{/workspace/new}">🚀 New Workspace</a></li>
+                        <li><a th:href="@{/share}">📤 Share</a></li>
+                        <li><a th:href="@{/password/change}">🔒 Change Password</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul class="menu">
+                    <li><a th:href="@{/dashboard}">🏠 Home</a></li>
+                    <li><a th:href="@{/reading}">📚 Reading List</a></li>
+                    <li><a th:href="@{/journals/new}">📝 New Page</a></li>
+                    <li><a th:href="@{/todos}">✅ To-do’s</a></li>
+                    <li><a th:href="@{/journals}">📖 Journals</a></li>
+                    <li><a th:href="@{/trash}">🗑️ Trash</a></li>
                 </ul>
             </div>
-        </div>
 
-        <div class="sidebar-menu">
-            <ul class="menu">
-                <li><a th:href="@{/dashboard}">🏠 Home</a></li>
-                <li><a th:href="@{/reading}">📚 Reading List</a></li>
-                <li><a th:href="@{/journals/new}">📝 New Page</a></li>
-                <li><a th:href="@{/todos}">✅ To-do’s</a></li>
-                <li><a th:href="@{/journals}">📖 Journals</a></li>
-                <li><a th:href="@{/trash}">🗑️ Trash</a></li>
-            </ul>
-        </div>
+            <div class="sidebar-bottom">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            </div>
 
-        <div class="sidebar-bottom">
-            <form th:action="@{/logout}" method="post">
-                <button type="submit" class="logout-btn">Logout</button>
-            </form>
         </div>
-
     </div>
-</div>
 
 </body>
+
 </html>

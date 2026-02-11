@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trash - MyNoteSphere</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <style>
+        .trash-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .trash-section h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #1f2937;
+        }
+
+        .trash-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f3f4f6;
+            transition: background 0.2s;
+        }
+
+        .trash-item:last-child {
+            border-bottom: none;
+        }
+
+        .trash-item:hover {
+            background: #f9fafb;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .item-meta {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-restore {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: #9ca3af;
+            padding: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="page-header"
+                style="position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; min-height: 50px;">
+                <button id="sidebarToggle" class="open-btn" style="position: absolute; left: 0;">☰</button>
+                <h1 style="color: #08090A; margin: 0;">🗑️ Trash</h1>
+            </header>
+
+            <!-- Journals Section -->
+            <div class="trash-section">
+                <h2>Journals</h2>
+                <div th:if="${#lists.isEmpty(journals)}" class="empty-msg">No deleted journals</div>
+                <div th:each="journal : ${journals}" class="trash-item">
+                    <div class="item-info">
+                        <div class="item-title" th:text="${journal.title}">Journal Title</div>
+                        <div class="item-meta" th:text="${#temporals.format(journal.createdAt, 'MMM d, yyyy')}">Date
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <form th:action="@{/trash/restore/journal/{id}(id=${journal.id})}" method="post">
+                            <button type="submit" class="btn-restore">♻️ Restore</button>
+                        </form>
+                        <form th:action="@{/trash/delete/journal/{id}(id=${journal.id})}" method="post">
+                            <button type="submit" class="btn-delete"
+                                onclick="return confirm('Delete permanently? This cannot be undone.')">❌</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Todos Section -->
+            <div class="trash-section">
+                <h2>To-Dos</h2>
+                <div th:if="${#lists.isEmpty(todos)}" class="empty-msg">No deleted tasks</div>
+                <div th:each="todo : ${todos}" class="trash-item">
+                    <div class="item-info">
+                        <div class="item-title" th:text="${todo.title}">Task Title</div>
+                        <div class="item-meta">Task</div>
+                    </div>
+                    <div class="item-actions">
+                        <form th:action="@{/trash/restore/todo/{id}(id=${todo.id})}" method="post">
+                            <button type="submit" class="btn-restore">♻️ Restore</button>
+                        </form>
+                        <form th:action="@{/trash/delete/todo/{id}(id=${todo.id})}" method="post">
+                            <button type="submit" class="btn-delete"
+                                onclick="return confirm('Delete permanently? This cannot be undone.')">❌</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading List Section -->
+            <div class="trash-section">
+                <h2>Reading List</h2>
+                <div th:if="${#lists.isEmpty(readingItems)}" class="empty-msg">No deleted books</div>
+                <div th:each="item : ${readingItems}" class="trash-item">
+                    <div class="item-info">
+                        <div class="item-title" th:text="${item.title}">Book Title</div>
+                        <div class="item-meta" th:text="${item.author}">Author</div>
+                    </div>
+                    <div class="item-actions">
+                        <form th:action="@{/trash/restore/reading/{id}(id=${item.id})}" method="post">
+                            <button type="submit" class="btn-restore">♻️ Restore</button>
+                        </form>
+                        <form th:action="@{/trash/delete/reading/{id}(id=${item.id})}" method="post">
+                            <button type="submit" class="btn-delete"
+                                onclick="return confirm('Delete permanently? This cannot be undone.')">❌</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script th:src="@{/js/sidebar.js}"></script>
+</body>
+
+</html>

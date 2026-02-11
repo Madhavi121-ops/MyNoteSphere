@@ -1,18 +1,20 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+
+<body class="auth-page">
     <!-- Navbar -->
     <nav class="navbar">
-         <a class="brand" th:href="@{/}">
-    		<img th:src="@{/images/logo.png}" alt="logo" class="logo">
-		</a>
+        <a class="brand" th:href="@{/}">
+            <img th:src="@{/images/logo.png}" alt="logo" class="logo">
+        </a>
         <ul>
-        	<li><a th:href="@{/features}">Features</a></li>
+            <li><a th:href="@{/#features}">Features</a></li>
             <li><a th:href="@{/login}">Sign In</a></li>
             <li><a th:href="@{/register}">Sign Up</a></li>
             <li><a th:href="@{/about}">About Us</a></li>
@@ -24,50 +26,45 @@
         <div th:if="${param.error}" class="error-message">Invalid username or password.</div>
         <div th:if="${param.logout}" class="success-message">You have been logged out.</div>
         <div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
-        
+
         <form th:action="@{/login}" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            
+
             <div class="form-group">
                 <button type="submit">Login</button>
             </div>
         </form>
-        
+
         <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
     </div>
     <footer class="footer" id="about">
-        <div class="footer-content">
-            <div class="footer-section">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="logo">
+                    <img th:src="@{/images/logo.png}" alt="MyNoteSphere Logo">
+                </div>
+                <p>Your private space to think, plan, and grow.</p>
+            </div>
+
+            <div class="footer-column">
                 <h4>Product</h4>
-                <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-              
+                <a href="/#features">Features</a>
+                <a href="/#how-it-works">How it Works</a>
+                <a href="/feedback">Feedback</a>
             </div>
-            <div class="footer-section">
+
+            <div class="footer-column">
                 <h4>Company</h4>
-                <a href="#about">About Us</a>
-                <a href="#careers">Careers</a>
-             
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <a href="#help">Help Center</a>
-                <a href="#contact">Contact Us</a>
-                
-            </div>
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-              
+                <a href="/about">About Us</a>
+                <a href="/contact">Contact</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -75,4 +72,5 @@
         </div>
     </footer>
 </body>
+
 </html>

@@ -9,5 +9,9 @@ import com.NoteSphere.model.User;
 
 public interface ReadingRepository extends JpaRepository<ReadingItem, Long> {
 
-    List<ReadingItem> findByUser(User user);
+    List<ReadingItem> findByUser(User user); // Deprecated use
+
+    List<ReadingItem> findByUserAndDeletedFalse(User user);
+
+    List<ReadingItem> findByUserAndDeletedTrue(User user);
 }

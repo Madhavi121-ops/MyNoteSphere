@@ -1,27 +1,115 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/sidebar.css}">
 </head>
+
 <body>
 
-<div class="app-layout">
+    <div class="app-layout">
 
-    <!-- Sidebar -->
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <!-- Main content -->
-    <div class="main-content">
-        <h2 style="color: #000000;">Welcome, <span sec:authentication="name"></span>!</h2>
-        
+        <!-- Main content -->
+        <div class="main-content">
+            <header class="page-header"
+                style="position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; min-height: 50px;">
+                <button id="sidebarToggle" class="open-btn" style="position: absolute; left: 0;">☰</button>
+                <h2
+                    style="color: #08090A; margin: 0; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    Welcome, <span sec:authentication="name"></span>!
+                </h2>
+                <div class="date-display" style="color: #666; font-weight: 500; position: absolute; right: 0;">
+                    <span th:text="${#temporals.format(#temporals.createNow(), 'EEEE, MMMM d')}">Today</span>
+                </div>
+            </header>
+
+            <!-- Daily Inspiration / Interesting Section -->
+            <section class="inspiration-section"
+                style="background: linear-gradient(135deg, #222823 0%, #08090A 100%); padding: 30px; border-radius: 16px; color: white; margin-bottom: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">✨ Daily Inspiration</h3>
+                <p style="font-size: 1.1rem; opacity: 0.9; font-style: italic;">"The best way to predict the future is
+                    to create it."</p>
+                <div style="margin-top: 20px; display: flex; gap: 20px;">
+                    <div class="stat-badge"
+                        style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
+                        📅 <strong th:text="${todoCount}">0</strong> Tasks Pending
+                    </div>
+                    <div class="stat-badge"
+                        style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
+                        📖 <strong th:text="${readingCount}">0</strong> Books Read
+                    </div>
+                    <div class="stat-badge"
+                        style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
+                        📝 <strong th:text="${journalCount}">0</strong> Journals
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flashcards Grid -->
+            <div class="dashboard-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px;">
+
+                <!-- Journal Flashcard -->
+                <a th:href="@{/journals}" class="flashcard" style="text-decoration: none; color: inherit;">
+                    <div class="card-content"
+                        style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #eee; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">📝</div>
+                        <h3 style="color: #08090A; margin-bottom: 8px;">Journals</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Capture your daily thoughts.</p>
+                    </div>
+                </a>
+
+                <!-- Todo Flashcard -->
+                <a th:href="@{/todos}" class="flashcard" style="text-decoration: none; color: inherit;">
+                    <div class="card-content"
+                        style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #eee; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">✅</div>
+                        <h3 style="color: #08090A; margin-bottom: 8px;">To-Do List</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Stay organized.</p>
+                    </div>
+                </a>
+
+                <!-- Reading List Flashcard -->
+                <a th:href="@{/reading}" class="flashcard" style="text-decoration: none; color: inherit;">
+                    <div class="card-content"
+                        style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #eee; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">📚</div>
+                        <h3 style="color: #08090A; margin-bottom: 8px;">Reading List</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Track your books.</p>
+                    </div>
+                </a>
+
+                <!-- New Page Flashcard -->
+                <a th:href="@{/journals/new}" class="flashcard" style="text-decoration: none; color: inherit;">
+                    <div class="card-content"
+                        style="background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #eee; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                        <div class="icon" style="font-size: 3rem; margin-bottom: 15px;">📄</div>
+                        <h3 style="color: #08090A; margin-bottom: 8px;">New Page</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Start a fresh entry.</p>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
-</div>
+    <script th:src="@{/js/sidebar.js}"></script>
+    <style>
+        .flashcard .card-content:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+            border-color: #d1d5db !important;
+        }
+    </style>
 
 </body>
+
 </html>

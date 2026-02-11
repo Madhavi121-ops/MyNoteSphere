@@ -22,7 +22,7 @@ public class ReadingController {
     private final UserService userService;
 
     public ReadingController(ReadingService readingService,
-                             UserService userService) {
+            UserService userService) {
         this.readingService = readingService;
         this.userService = userService;
     }
@@ -41,16 +41,22 @@ public class ReadingController {
 
     @PostMapping("/add")
     public String addReading(@ModelAttribute ReadingItem readingItem,
-                             Authentication auth) {
+            Authentication auth) {
 
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         User user = userService.findByUsername(userDetails.getUsername());
 
         readingItem.setUser(user);
-        readingItem.setStatus(ReadingStatus.TO_READ);
+        // Status is now bound from the form
         readingItem.setCreatedAt(LocalDate.now());
 
         readingService.save(readingItem);
+        return "redirect:/reading";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteReading(@PathVariable Long id) {
+        readingService.deleteById(id);
         return "redirect:/reading";
     }
 }
